@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+        <meta content="utf-8" http-equiv="encoding"> 
+    </head>
+    <body>
+        <script>
+
+            function getRandomInt(max) {
+                return Math.floor(Math.random() * Math.floor(max));
+            }
+            
+            function computerSel() {
+                sel = getRandomInt(3);
+                switch(sel) {
+                    case 0:
+                        return {name: "Rock", num: 0};
+                        break;
+                    case 1:
+                        return {name: "Paper", num: 1};
+                        break;
+                    case 2:
+                        return {name: "Scissors", num:2};
+                        break;
+                    default:
+                        throw "Random Int out of range: computerSel";
+                }
+            }
+
+            function userSel() {
+                sel = prompt("Choose Rock, Paper, Scissors or 0,1,2 respectively");
+                sel = sel.toLowerCase();
+                switch(sel) {
+                    case "0":
+                    case "rock":
+                        return {name: "Rock", num: 0};
+                        break;
+                    case "1":
+                    case "paper":
+                        return {name: "Paper", num: 1};
+                        break;
+                    case "2":
+                    case "scissors":
+                        return {name: "Scissors", num:2};
+                        break;
+                    default:
+                        throw "Input outside accepted paramters";
+                }
+            }
+
+            function playRound(computerSelection, userSelection) {
+                if (computerSelection.num + 1 == userSelection.num
+                 || computerSelection.num - 2 == userSelection.num) {
+                    return `You Win ${userSelection.name} beats ${computerSelection.name}`;
+                } else if (computerSelection.num == userSelection.num) {
+                    return `You Tie ${userSelection.name} ties to ${computerSelection.name}`;
+                } 
+                else {
+                    return `You Lose ${userSelection.name} loses to ${computerSelection.name}`;
+                }
+            } 
+
+            try {
+                userSelection = userSel();
+                computerSelection = computerSel();
+                alert(playRound(computerSelection, userSelection));
+            }
+
+            catch(e) {
+                console.error(e);
+            }
+
+        </script>
+    </body>
+</html>
